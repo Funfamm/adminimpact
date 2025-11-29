@@ -1,18 +1,47 @@
-# 1. Turn this folder into a Git repository
-git init
+# ==========================================
+# STAGE 1: Build the React Frontend
+# ==========================================
+FROM node:20-slim as builder
 
-# 2. Rename the branch to 'main'
-git branch -M main
+# Set working directory
+WORKDIR /app
 
-# 3. Add all your files (including the new Dockerfile)
-git add .
+# Copy root dependency files
+COPY package*.json ./
 
-# 4. Save the snapshot
-git commit -m "Complete project setup for Cloud Run"
+# Install frontend dependencies
+RUN npm install
 
-# 5. Connect to GitHub (REPLACE THE URL BELOW WITH YOUR ACTUAL REPO URL)
-# If you don't know it, go to your GitHub repo and click the green "Code" button to copy the HTTPS URL.
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME_HERE/ai-impact-media-web-page.git
+# Copy all source code
+COPY . .
 
-# 6. Push to GitHub (Using --force to ensure this code overwrites any empty/broken state on GitHub)
-git push -u origin main --force
+# Build the static website (Output goes to /app/dist)
+RUN npm run build
+
+# ==========================================
+# STAGE 2: Setup the Backend Server
+# ==========================================
+FROM node:20-slim
+
+# Set working directory for the server
+WORKDIR /app
+
+# Copy server dependency definition
+COPY server/package*.json ./
+
+# Install backend dependencies (including ts-node for running TypeScript)
+RUN npm install
+
+# Copy backend source code (index.ts, etc.) into the container
+COPY server/ ./
+
+# Copy the built frontend website from Stage 1 into the server's folder
+# The server logic expects files at ./dist
+COPY --from=builder /app/dist ./dist
+
+# Expose the port Cloud Run expects
+ENV PORT=8080
+ENV NODE_ENV=production
+
+# Start the application
+CMD ["npm", "start"]
