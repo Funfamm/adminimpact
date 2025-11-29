@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Impact Media</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                bg: '#050505',          // Deepest black
+                surface: '#121212',     // Surface/Cards
+                surfaceHighlight: '#1E1E1E', // Input backgrounds
+                primary: '#00f0ff',     // Cyberpunk Cyan
+                secondary: '#7000ff',   // Deep Neon Purple
+                text: '#ffffff',        // Main text
+                muted: '#9ca3af',       // Secondary text
+                glass: 'rgba(255, 255, 255, 0.03)',
+                border: 'rgba(255, 255, 255, 0.1)',
+                success: '#10B981',
+                error: '#EF4444',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['Fira Code', 'monospace'],
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .glass-panel {
+          @apply bg-brand-glass backdrop-blur-xl border border-brand-border shadow-lg;
+        }
+        .text-glow {
+          text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        .btn-primary {
+          @apply bg-brand-primary text-black font-bold py-3 px-6 rounded-lg hover:bg-cyan-300 transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_25px_rgba(0,240,255,0.4)] hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed;
+        }
+        .btn-secondary {
+          @apply bg-white/5 text-white font-bold py-3 px-6 rounded-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-md border border-brand-border hover:border-white/30 hover:-translate-y-0.5;
+        }
+        .input-field {
+          @apply w-full bg-brand-surfaceHighlight border border-brand-border rounded-lg p-3.5 text-brand-text placeholder-gray-500 focus:border-brand-primary focus:outline-none focus:ring-1 focus:ring-brand-primary/50 transition-all duration-200;
+        }
+        .page-container {
+          @apply min-h-screen pt-24 px-4 sm:px-6 lg:px-8 bg-brand-bg text-brand-text selection:bg-brand-primary selection:text-black;
+        }
+        .heading-hero {
+          @apply text-5xl md:text-7xl font-black tracking-tight mb-4 drop-shadow-2xl;
+        }
+      }
+      
+      body {
+        background-color: #050505;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #00f0ff;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
+    "cors": "https://aistudiocdn.com/cors@^2.8.5",
+    "express": "https://aistudiocdn.com/express@^5.1.0",
+    "@google-cloud/storage": "https://aistudiocdn.com/@google-cloud/storage@^7.17.3",
+    "url": "https://aistudiocdn.com/url@^0.11.4",
+    "path": "https://aistudiocdn.com/path@^0.12.7",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@supabase/supabase-js": "https://aistudiocdn.com/@supabase/supabase-js@^2.39.0",
+    "hls.js": "https://aistudiocdn.com/hls.js@^1.5.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "fs": "https://aistudiocdn.com/fs@^0.0.1-security"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "AI Impact Media",
+  "description": "A futuristic, Netflix-style streaming and casting platform with AI-driven interactions and admin mainframe.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
