@@ -1,1 +1,23 @@
 
+# Dependencies
+node_modules
+server/node_modules
+
+# Build artifacts
+dist
+build
+
+# Environment variables (Safety)
+.env
+.env.local
+.env.production
+
+# Git files
+.git
+.gitignore
+
+# System files
+.DS_Store
+Thumbs.db
+npm-debug.log
+yarn-error.log
